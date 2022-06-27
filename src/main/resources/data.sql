@@ -1,0 +1,3 @@
+insert into CARGO (id,ativo,created,modified,nome_cargo) values(1,1, '2022-06-27 09:30:00','2022-06-27 09:30:00','Arquiteto de Infraestrutura');
+insert into CARGO (id,ativo,created,modified,nome_cargo) values(2,1, '2022-06-27 09:30:00','2022-06-27 09:30:00','Consultor Técnico Oracle');
+insert into CARGO (id,ativo,created,modified,nome_cargo) values(3,1, '2022-06-27 09:30:00','2022-06-27 09:30:00','Técnico De Suporte Remoto');
