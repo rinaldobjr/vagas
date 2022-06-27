@@ -4,24 +4,38 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Cargo implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	private Long id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "ID")
+	private Integer id;
 	
+	@Column(name = "NOME_CARGO")
 	private String nomeCargo;
 	
+	@Column(name = "CREATED")
 	private LocalDateTime criacao;
 	
+	@Column(name = "MODIFIED")
 	private LocalDateTime modificado;
 	
+	@Column(name = "ATIVO")
 	private int ativo;
 	
 	public Cargo() {
 	}
 
-	public Cargo(Long id, String nomeCargo, LocalDateTime criacao, LocalDateTime modificado, int ativo) {
+	public Cargo(Integer id, String nomeCargo, LocalDateTime criacao, LocalDateTime modificado, int ativo) {
 		super();
 		this.id = id;
 		this.nomeCargo = nomeCargo;
@@ -30,11 +44,11 @@ public class Cargo implements Serializable{
 		this.ativo = ativo;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
