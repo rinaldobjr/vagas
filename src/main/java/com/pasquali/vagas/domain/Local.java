@@ -1,7 +1,6 @@
 package com.pasquali.vagas.domain;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -11,34 +10,34 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Cargo implements Serializable{
+public class Local implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Integer id;
 	
-	@Column(name = "NOME_CARGO", length = 100)
-	private String nomeCargo;
+	@Column(name = "NOME_LOCAL", length = 36)
+	private String nomeLocal;
 	
 	@Column(name = "ATIVO", length = 1)
 	private int ativo;
-	
-	public Cargo() {
+
+	public Local() {
 	}
 
-	public Cargo(Integer id, String nomeCargo, int ativo) {
+	public Local(Integer id, String nomeLocal, int ativo) {
 		super();
 		this.id = id;
-		this.nomeCargo = nomeCargo;
+		this.nomeLocal = nomeLocal;
 		this.ativo = ativo;
 	}
 
 	@Override
 	public String toString() {
-		return "Cargo [id=" + id + ", nomeCargo=" + nomeCargo + ", ativo=" + ativo + "]";
+		return "Local [id=" + id + ", nomeLocal=" + nomeLocal + ", ativo=" + ativo + "]";
 	}
 
 	public Integer getId() {
@@ -49,12 +48,12 @@ public class Cargo implements Serializable{
 		this.id = id;
 	}
 
-	public String getNomeCargo() {
-		return nomeCargo;
+	public String getNomeLocal() {
+		return nomeLocal;
 	}
 
-	public void setNomeCargo(String nomeCargo) {
-		this.nomeCargo = nomeCargo;
+	public void setNomeLocal(String nomeLocal) {
+		this.nomeLocal = nomeLocal;
 	}
 
 	public int getAtivo() {
@@ -78,14 +77,8 @@ public class Cargo implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cargo other = (Cargo) obj;
+		Local other = (Local) obj;
 		return Objects.equals(id, other.id);
 	}
 	
 }
-
-//@Column(name = "CREATED")
-//private LocalDateTime criacao;
-//
-//@Column(name = "MODIFIED")
-//private LocalDateTime modificado;

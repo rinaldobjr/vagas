@@ -1,7 +1,6 @@
 package com.pasquali.vagas.domain;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -11,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Cargo implements Serializable{
+public class Nivel implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -20,25 +19,25 @@ public class Cargo implements Serializable{
 	@Column(name = "ID")
 	private Integer id;
 	
-	@Column(name = "NOME_CARGO", length = 100)
-	private String nomeCargo;
+	@Column(name = "NOME_NIVEL", length = 20)
+	private String nomeNivel;
 	
 	@Column(name = "ATIVO", length = 1)
 	private int ativo;
 	
-	public Cargo() {
+	public Nivel() {
 	}
 
-	public Cargo(Integer id, String nomeCargo, int ativo) {
+	public Nivel(Integer id, String nomeNivel, int ativo) {
 		super();
 		this.id = id;
-		this.nomeCargo = nomeCargo;
+		this.nomeNivel = nomeNivel;
 		this.ativo = ativo;
 	}
 
 	@Override
 	public String toString() {
-		return "Cargo [id=" + id + ", nomeCargo=" + nomeCargo + ", ativo=" + ativo + "]";
+		return "Nivel [id=" + id + ", nomeNivel=" + nomeNivel + ", ativo=" + ativo + "]";
 	}
 
 	public Integer getId() {
@@ -49,12 +48,12 @@ public class Cargo implements Serializable{
 		this.id = id;
 	}
 
-	public String getNomeCargo() {
-		return nomeCargo;
+	public String getNomeNivel() {
+		return nomeNivel;
 	}
 
-	public void setNomeCargo(String nomeCargo) {
-		this.nomeCargo = nomeCargo;
+	public void setNomeNivel(String nomeNivel) {
+		this.nomeNivel = nomeNivel;
 	}
 
 	public int getAtivo() {
@@ -64,7 +63,7 @@ public class Cargo implements Serializable{
 	public void setAtivo(int ativo) {
 		this.ativo = ativo;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -78,14 +77,9 @@ public class Cargo implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cargo other = (Cargo) obj;
+		Nivel other = (Nivel) obj;
 		return Objects.equals(id, other.id);
 	}
 	
+	
 }
-
-//@Column(name = "CREATED")
-//private LocalDateTime criacao;
-//
-//@Column(name = "MODIFIED")
-//private LocalDateTime modificado;
