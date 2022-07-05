@@ -1,11 +1,7 @@
 package com.pasquali.vagas.resources;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.SessionFactory;
-import org.hibernate.stat.Statistics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +19,7 @@ public class CargoResource {
 	@Autowired
 	private CargoService cargoService;
 	
-	private SessionFactory sessionFactory;
+	//private SessionFactory sessionFactory;
 	
 	//FindById
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)

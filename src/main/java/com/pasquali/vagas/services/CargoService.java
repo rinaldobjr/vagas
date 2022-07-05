@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.pasquali.vagas.domain.Cargo;
 import com.pasquali.vagas.repositories.CargoRepository;
+import com.pasquali.vagas.services.exception.ObjectNotFoundException;
 
 
 @Service
@@ -18,8 +19,9 @@ public class CargoService {
 	private CargoRepository cargoRepository;
 	
 	public Cargo buscar(Integer id) {
-		Optional<Cargo> objeto = cargoRepository.findById(id);
-		return objeto.orElse(null);
+		Optional<Cargo> obj = cargoRepository.findById(id);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+		"Objeto não encontrado! Id: " + id + ", Tipo: " + Cargo.class.getName()));
 	}
 	
 	public List<Cargo> listar() {
