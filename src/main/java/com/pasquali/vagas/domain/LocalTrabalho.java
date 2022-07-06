@@ -13,37 +13,37 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Area implements Serializable{
+public class LocalTrabalho implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Integer id;
 	
-	@Column(name = "NOME_AREA", length = 30)
-	private String nomeArea;
+	@Column(name = "NOME_LOCAL", length = 36)
+	private String nomeLocal;
 	
 	@Column(name = "ATIVO", length = 1)
 	private int ativo;
 
-	@OneToMany(mappedBy="area")
+	@OneToMany(mappedBy="localTrabalho")
 	private List<Vaga> vagas = new ArrayList<>();
 	
-	public Area() {
+	public LocalTrabalho() {
 	}
 
-	public Area(Integer id, String nomeArea, int ativo) {
+	public LocalTrabalho(Integer id, String nomeLocal, int ativo) {
 		super();
 		this.id = id;
-		this.nomeArea = nomeArea;
+		this.nomeLocal = nomeLocal;
 		this.ativo = ativo;
 	}
 
 	@Override
 	public String toString() {
-		return "Area [id=" + id + ", nomeArea=" + nomeArea + ", ativo=" + ativo + "]";
+		return "Local [id=" + id + ", nomeLocal=" + nomeLocal + ", ativo=" + ativo + "]";
 	}
 
 	public Integer getId() {
@@ -54,12 +54,12 @@ public class Area implements Serializable{
 		this.id = id;
 	}
 
-	public String getNomeArea() {
-		return nomeArea;
+	public String getNomeLocal() {
+		return nomeLocal;
 	}
 
-	public void setNomeArea(String nomeArea) {
-		this.nomeArea = nomeArea;
+	public void setNomeLocal(String nomeLocal) {
+		this.nomeLocal = nomeLocal;
 	}
 
 	public int getAtivo() {
@@ -83,7 +83,7 @@ public class Area implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Area other = (Area) obj;
+		LocalTrabalho other = (LocalTrabalho) obj;
 		return Objects.equals(id, other.id);
 	}
 	

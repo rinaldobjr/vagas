@@ -1,6 +1,8 @@
 package com.pasquali.vagas.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class InfoContato implements Serializable{
@@ -19,7 +22,7 @@ public class InfoContato implements Serializable{
 	@Column(name = "ID")
 	private Integer id;
 	
-	@Column(name = "NOME_APELIDO", length = 30)
+	@Column(name = "NOME_APELIDO", length = 40)
 	private String nomeApelido;
 	
 	@Column(name = "TELEFONE", length = 20)
@@ -33,6 +36,9 @@ public class InfoContato implements Serializable{
 	
 	@Column(name = "ATIVO", length = 1)
 	private int ativo;
+	
+	@OneToMany(mappedBy="infoContato")
+	private List<Vaga> vagas = new ArrayList<>();
 
 	public InfoContato() {
 	}

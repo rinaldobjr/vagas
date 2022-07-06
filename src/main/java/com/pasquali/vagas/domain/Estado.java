@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Area implements Serializable{
+public class Estado implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,28 +22,28 @@ public class Area implements Serializable{
 	@Column(name = "ID")
 	private Integer id;
 	
-	@Column(name = "NOME_AREA", length = 30)
-	private String nomeArea;
+	@Column(name = "NOME", length = 40)
+	private String nome;
 	
 	@Column(name = "ATIVO", length = 1)
 	private int ativo;
-
-	@OneToMany(mappedBy="area")
-	private List<Vaga> vagas = new ArrayList<>();
 	
-	public Area() {
-	}
+	//Relation
+	@OneToMany(mappedBy="estado")
+	private List<Cidade> cidades = new ArrayList<>();
+	
+	public Estado() {}
 
-	public Area(Integer id, String nomeArea, int ativo) {
+	public Estado(Integer id, String nome, int ativo) {
 		super();
 		this.id = id;
-		this.nomeArea = nomeArea;
+		this.nome = nome;
 		this.ativo = ativo;
 	}
 
 	@Override
 	public String toString() {
-		return "Area [id=" + id + ", nomeArea=" + nomeArea + ", ativo=" + ativo + "]";
+		return "Estado [id=" + id + ", nome=" + nome + ", ativo=" + ativo + "]";
 	}
 
 	public Integer getId() {
@@ -54,12 +54,12 @@ public class Area implements Serializable{
 		this.id = id;
 	}
 
-	public String getNomeArea() {
-		return nomeArea;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomeArea(String nomeArea) {
-		this.nomeArea = nomeArea;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public int getAtivo() {
@@ -68,6 +68,14 @@ public class Area implements Serializable{
 
 	public void setAtivo(int ativo) {
 		this.ativo = ativo;
+	}
+	
+	public List<Cidade> getCidades() {
+		return cidades;
+	}
+
+	public void setCidades(List<Cidade> cidades) {
+		this.cidades = cidades;
 	}
 
 	@Override
@@ -83,7 +91,7 @@ public class Area implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Area other = (Area) obj;
+		Estado other = (Estado) obj;
 		return Objects.equals(id, other.id);
 	}
 	

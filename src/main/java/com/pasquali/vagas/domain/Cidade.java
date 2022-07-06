@@ -8,36 +8,44 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Local implements Serializable{
+public class Cidade implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Integer id;
 	
-	@Column(name = "NOME_LOCAL", length = 36)
-	private String nomeLocal;
+	@Column(name = "NOME", length = 45)
+	private String nome;
 	
 	@Column(name = "ATIVO", length = 1)
 	private int ativo;
-
-	public Local() {
+	
+	//Relacionamento
+	@ManyToOne
+	@JoinColumn(name = "estado_id")
+	private Estado estado;
+	
+	public Cidade() {
 	}
 
-	public Local(Integer id, String nomeLocal, int ativo) {
+	public Cidade(Integer id, String nome, int ativo, Estado estado) {
 		super();
 		this.id = id;
-		this.nomeLocal = nomeLocal;
+		this.nome = nome;
 		this.ativo = ativo;
+		this.estado = estado;
 	}
 
 	@Override
 	public String toString() {
-		return "Local [id=" + id + ", nomeLocal=" + nomeLocal + ", ativo=" + ativo + "]";
+		return "Cidade [id=" + id + ", nome=" + nome + ", ativo=" + ativo + ", estado=" + estado + "]";
 	}
 
 	public Integer getId() {
@@ -48,12 +56,12 @@ public class Local implements Serializable{
 		this.id = id;
 	}
 
-	public String getNomeLocal() {
-		return nomeLocal;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomeLocal(String nomeLocal) {
-		this.nomeLocal = nomeLocal;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public int getAtivo() {
@@ -77,8 +85,9 @@ public class Local implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Local other = (Local) obj;
+		Cidade other = (Cidade) obj;
 		return Objects.equals(id, other.id);
 	}
+	
 	
 }

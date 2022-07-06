@@ -1,6 +1,8 @@
 package com.pasquali.vagas.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Contrato implements Serializable{
@@ -25,6 +28,9 @@ public class Contrato implements Serializable{
 	@Column(name = "ATIVO", length = 1)
 	private int ativo;
 
+	@OneToMany(mappedBy="contrato")
+	private List<Vaga> vagas = new ArrayList<>();
+	
 	public Contrato() {
 	}
 
