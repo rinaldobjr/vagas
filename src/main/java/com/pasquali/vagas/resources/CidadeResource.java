@@ -9,31 +9,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pasquali.vagas.domain.Cargo;
-import com.pasquali.vagas.services.CargoService;
+import com.pasquali.vagas.domain.Cidade;
+import com.pasquali.vagas.services.CidadeService;
 
 @RestController
-@RequestMapping(value="/cargo")
-public class CargoResource {
+@RequestMapping(value="/cidade")
+public class CidadeResource {
 	
 	@Autowired
-	private CargoService cargoService;
+	private CidadeService cidadeService;
 	
 	//private SessionFactory sessionFactory;
 	
 	//FindById
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> findById(@PathVariable Integer id) {
-		Cargo objeto = cargoService.buscar(id);
+		Cidade objeto = cidadeService.buscar(id);
 		return ResponseEntity.ok().body(objeto);
 	}
 	
 	//ListAll
 	@RequestMapping(value="/listar", method=RequestMethod.GET)
-	public ResponseEntity<List<Cargo>> listando() {
-		List<Cargo> lista = cargoService.listar();
-		//Statistics estatisticas = sessionFactory.getStatistics();
-		//System.out.println(estatisticas.getQueryExecutionCount());
+	public ResponseEntity<List<Cidade>> listando() {
+		List<Cidade> lista = cidadeService.listar();
 		return ResponseEntity.ok().body(lista);
 	}
 	

@@ -14,6 +14,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.pasquali.vagas.domain.enums.Registro;
+
 @Entity
 public class Empresa implements Serializable {
 
@@ -55,12 +59,16 @@ public class Empresa implements Serializable {
 	private String email;
 	
 	@Column(name = "ATIVO", length = 1)
-	private int ativo;
+	private Integer ativo;
 	
+	//Relation
+	@JsonManagedReference
 	@OneToOne
 	@JoinColumn(name = "cidade_id")
 	private Cidade cidade;
 	
+	//Relation
+	@JsonBackReference
 	@OneToMany(mappedBy="empresa")
 	private List<Vaga> vagas = new ArrayList<>();
 	
@@ -68,7 +76,7 @@ public class Empresa implements Serializable {
 	}
 
 	public Empresa(Integer id, String nomeEmpresa, String endereco, String numero, String complemento, String bairro,
-			String cep, int whatsapp, String telefone, String celular, String email, int ativo, Cidade cidade) {
+			String cep, int whatsapp, String telefone, String celular, String email, Registro ativo, Cidade cidade) {
 		super();
 		this.id = id;
 		this.nomeEmpresa = nomeEmpresa;
@@ -81,11 +89,17 @@ public class Empresa implements Serializable {
 		this.telefone = telefone;
 		this.celular = celular;
 		this.email = email;
-		this.ativo = ativo;
+		this.ativo = ativo.getCod();
 		this.cidade = cidade;
 	}
 
-
+	@Override
+	public String toString() {
+		return "Empresa [id=" + id + ", nomeEmpresa=" + nomeEmpresa + ", endereco=" + endereco + ", numero=" + numero
+				+ ", complemento=" + complemento + ", bairro=" + bairro + ", cep=" + cep + ", whatsapp=" + whatsapp
+				+ ", telefone=" + telefone + ", celular=" + celular + ", email=" + email + ", ativo=" + ativo
+				+ ", cidade=" + cidade + "]";
+	}
 
 	public Integer getId() {
 		return id;
@@ -175,12 +189,12 @@ public class Empresa implements Serializable {
 		this.email = email;
 	}
 
-	public int getAtivo() {
-		return ativo;
+	public Registro getAtivo() {
+		return Registro.toEnum(ativo);
 	}
 
-	public void setAtivo(int ativo) {
-		this.ativo = ativo;
+	public void setAtivo(Registro ativo) {
+		this.ativo = ativo.getCod();
 	}
 
 	@Override

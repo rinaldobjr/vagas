@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.pasquali.vagas.domain.enums.Registro;
+
 @Entity
 public class Cidade implements Serializable{
 
@@ -25,21 +28,25 @@ public class Cidade implements Serializable{
 	private String nome;
 	
 	@Column(name = "ATIVO", length = 1)
-	private int ativo;
+	private Integer ativo;
 	
-	//Relacionamento
+	//Relation
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "estado_id")
 	private Estado estado;
 	
+	//@OneToMany(mappedBy="cidade")
+	//private List<Empresa> empresas = new ArrayList<>();
+	
 	public Cidade() {
 	}
 
-	public Cidade(Integer id, String nome, int ativo, Estado estado) {
+	public Cidade(Integer id, String nome, Registro ativo, Estado estado) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.ativo = ativo;
+		this.ativo = ativo.getCod();
 		this.estado = estado;
 	}
 
@@ -64,12 +71,20 @@ public class Cidade implements Serializable{
 		this.nome = nome;
 	}
 
-	public int getAtivo() {
-		return ativo;
+	public Registro getAtivo() {
+		return Registro.toEnum(ativo);
 	}
 
-	public void setAtivo(int ativo) {
-		this.ativo = ativo;
+	public void setAtivo(Registro ativo) {
+		this.ativo = ativo.getCod();
+	}
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
 
 	@Override

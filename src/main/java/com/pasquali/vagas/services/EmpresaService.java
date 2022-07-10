@@ -7,26 +7,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pasquali.vagas.domain.Cargo;
-import com.pasquali.vagas.repositories.CargoRepository;
+import com.pasquali.vagas.domain.Empresa;
+import com.pasquali.vagas.repositories.EmpresaRepository;
 import com.pasquali.vagas.services.exception.ObjectNotFoundException;
 
-
 @Service
-public class CargoService {
-	
+public class EmpresaService {
+
 	@Autowired
-	private CargoRepository cargoRepository;
+	private EmpresaRepository empresaRepository;
 	
-	public Cargo buscar(Integer id) {
-		Optional<Cargo> obj = cargoRepository.findById(id);
+	public Empresa buscar(Integer id) {
+		Optional<Empresa> obj = empresaRepository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 		"Objeto não encontrado! Id: " + id + ", Tipo: " + Cargo.class.getName()));
 	}
 	
-	public List<Cargo> listar() {
-		List<Cargo> listagem = cargoRepository.findAll();
-		//System.out.println(listagem);
+	public List<Empresa> listar() {
+		List<Empresa> listagem = empresaRepository.findAll();
 		return listagem;
 	}
-
 }

@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.pasquali.vagas.domain.enums.Registro;
+
 @Entity
 public class LocalTrabalho implements Serializable{
 
@@ -26,7 +28,7 @@ public class LocalTrabalho implements Serializable{
 	private String nomeLocal;
 	
 	@Column(name = "ATIVO", length = 1)
-	private int ativo;
+	private Integer ativo;
 
 	@OneToMany(mappedBy="localTrabalho")
 	private List<Vaga> vagas = new ArrayList<>();
@@ -34,11 +36,11 @@ public class LocalTrabalho implements Serializable{
 	public LocalTrabalho() {
 	}
 
-	public LocalTrabalho(Integer id, String nomeLocal, int ativo) {
+	public LocalTrabalho(Integer id, String nomeLocal, Registro ativo) {
 		super();
 		this.id = id;
 		this.nomeLocal = nomeLocal;
-		this.ativo = ativo;
+		this.ativo = ativo.getCod();
 	}
 
 	@Override
@@ -62,12 +64,12 @@ public class LocalTrabalho implements Serializable{
 		this.nomeLocal = nomeLocal;
 	}
 
-	public int getAtivo() {
-		return ativo;
+	public Registro getAtivo() {
+		return Registro.toEnum(ativo);
 	}
 
-	public void setAtivo(int ativo) {
-		this.ativo = ativo;
+	public void setAtivo(Registro ativo) {
+		this.ativo = ativo.getCod();
 	}
 
 	@Override

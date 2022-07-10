@@ -12,6 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.pasquali.vagas.domain.enums.Registro;
+
 @Entity
 public class Estado implements Serializable{
 
@@ -26,19 +29,25 @@ public class Estado implements Serializable{
 	private String nome;
 	
 	@Column(name = "ATIVO", length = 1)
-	private int ativo;
+	private Integer ativo;
 	
 	//Relation
+	@JsonBackReference
 	@OneToMany(mappedBy="estado")
 	private List<Cidade> cidades = new ArrayList<>();
 	
+	//Relation
+	@JsonBackReference
+	@OneToMany(mappedBy="estado")
+	private List<Usuario> usuarios = new ArrayList<>();
+	
 	public Estado() {}
 
-	public Estado(Integer id, String nome, int ativo) {
+	public Estado(Integer id, String nome, Registro ativo) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.ativo = ativo;
+		this.ativo = ativo.getCod();
 	}
 
 	@Override
@@ -62,12 +71,12 @@ public class Estado implements Serializable{
 		this.nome = nome;
 	}
 
-	public int getAtivo() {
-		return ativo;
+	public Registro getAtivo() {
+		return Registro.toEnum(ativo);
 	}
 
-	public void setAtivo(int ativo) {
-		this.ativo = ativo;
+	public void setAtivo(Registro ativo) {
+		this.ativo = ativo.getCod();
 	}
 	
 	public List<Cidade> getCidades() {

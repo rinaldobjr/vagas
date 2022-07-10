@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.pasquali.vagas.domain.enums.Registro;
+
 @Entity
 public class Nivel implements Serializable{
 
@@ -26,7 +28,7 @@ public class Nivel implements Serializable{
 	private String nomeNivel;
 	
 	@Column(name = "ATIVO", length = 1)
-	private int ativo;
+	private Integer ativo;
 	
 	@OneToMany(mappedBy="nivel")
 	private List<Vaga> vagas = new ArrayList<>();
@@ -34,11 +36,11 @@ public class Nivel implements Serializable{
 	public Nivel() {
 	}
 
-	public Nivel(Integer id, String nomeNivel, int ativo) {
+	public Nivel(Integer id, String nomeNivel, Registro ativo) {
 		super();
 		this.id = id;
 		this.nomeNivel = nomeNivel;
-		this.ativo = ativo;
+		this.ativo = ativo.getCod();
 	}
 
 	@Override
@@ -62,12 +64,12 @@ public class Nivel implements Serializable{
 		this.nomeNivel = nomeNivel;
 	}
 
-	public int getAtivo() {
-		return ativo;
+	public Registro getAtivo() {
+		return Registro.toEnum(ativo);
 	}
 
-	public void setAtivo(int ativo) {
-		this.ativo = ativo;
+	public void setAtivo(Registro ativo) {
+		this.ativo = ativo.getCod();
 	}
 	
 	@Override

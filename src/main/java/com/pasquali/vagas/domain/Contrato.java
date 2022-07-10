@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.pasquali.vagas.domain.enums.Registro;
+
 @Entity
 public class Contrato implements Serializable{
 
@@ -26,7 +28,7 @@ public class Contrato implements Serializable{
 	private String nomeContrato;
 	
 	@Column(name = "ATIVO", length = 1)
-	private int ativo;
+	private Integer ativo;
 
 	@OneToMany(mappedBy="contrato")
 	private List<Vaga> vagas = new ArrayList<>();
@@ -34,11 +36,11 @@ public class Contrato implements Serializable{
 	public Contrato() {
 	}
 
-	public Contrato(Integer id, String nomeContrato, int ativo) {
+	public Contrato(Integer id, String nomeContrato, Registro ativo) {
 		super();
 		this.id = id;
 		this.nomeContrato = nomeContrato;
-		this.ativo = ativo;
+		this.ativo = ativo.getCod();
 	}
 
 	@Override
@@ -62,12 +64,12 @@ public class Contrato implements Serializable{
 		this.nomeContrato = nomeContrato;
 	}
 
-	public int getAtivo() {
-		return ativo;
+	public Registro getAtivo() {
+		return Registro.toEnum(ativo);
 	}
 
-	public void setAtivo(int ativo) {
-		this.ativo = ativo;
+	public void setAtivo(Registro ativo) {
+		this.ativo = ativo.getCod();
 	}
 
 	@Override
