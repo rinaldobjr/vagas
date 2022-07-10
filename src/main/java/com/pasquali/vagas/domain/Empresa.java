@@ -16,6 +16,7 @@ import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.pasquali.vagas.domain.enums.Permissao;
 import com.pasquali.vagas.domain.enums.Registro;
 
 @Entity
@@ -47,7 +48,7 @@ public class Empresa implements Serializable {
 	private String cep;
 	
 	@Column(name = "WHATSAPP", length = 1)
-	private int whatsapp;
+	private Integer whatsapp;
 	
 	@Column(name = "TELEFONE", length = 20)
 	private String telefone;
@@ -76,7 +77,7 @@ public class Empresa implements Serializable {
 	}
 
 	public Empresa(Integer id, String nomeEmpresa, String endereco, String numero, String complemento, String bairro,
-			String cep, int whatsapp, String telefone, String celular, String email, Registro ativo, Cidade cidade) {
+			String cep, Permissao whatsapp, String telefone, String celular, String email, Registro ativo, Cidade cidade) {
 		super();
 		this.id = id;
 		this.nomeEmpresa = nomeEmpresa;
@@ -85,7 +86,7 @@ public class Empresa implements Serializable {
 		this.complemento = complemento;
 		this.bairro = bairro;
 		this.cep = cep;
-		this.whatsapp = whatsapp;
+		this.whatsapp = whatsapp.getCod();
 		this.telefone = telefone;
 		this.celular = celular;
 		this.email = email;
@@ -157,12 +158,12 @@ public class Empresa implements Serializable {
 		this.cep = cep;
 	}
 
-	public int getWhatsapp() {
-		return whatsapp;
+	public Permissao getWhatsapp() {
+		return Permissao.toEnum(whatsapp);
 	}
 
-	public void setWhatsapp(int whatsapp) {
-		this.whatsapp = whatsapp;
+	public void setWhatsapp(Permissao whatsapp) {
+		this.whatsapp = whatsapp.getCod();
 	}
 
 	public String getTelefone() {

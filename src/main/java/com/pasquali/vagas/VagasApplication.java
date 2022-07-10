@@ -21,6 +21,7 @@ import com.pasquali.vagas.domain.Nivel;
 import com.pasquali.vagas.domain.Usuario;
 import com.pasquali.vagas.domain.Vaga;
 import com.pasquali.vagas.domain.VagaStatus;
+import com.pasquali.vagas.domain.enums.Permissao;
 import com.pasquali.vagas.domain.enums.Registro;
 import com.pasquali.vagas.domain.enums.Sexo;
 import com.pasquali.vagas.domain.enums.TipoAcao;
@@ -113,9 +114,9 @@ public class VagasApplication implements CommandLineRunner{
 		Area a2 = new Area(null, "Recursos Humanos","RH", Registro.ATIVO);
 		areaRepository.saveAll(Arrays.asList(a1,a2));
 		
-		Empresa e1 = new Empresa(null, "Empresa 1", "Rua Alta", "134", null, "Bairro da Hora", "18973-890", 1, null, "11 98709-5622", "email@empresa1.com.br", Registro.ATIVO, c1);
-		Empresa e2 = new Empresa(null, "Empresa 2", "Rua Baixa", "245", null, "Bairro da Quebrada", "08543-390", 1, null, "11 93241-3421", "email@empresa2.com.br", Registro.ATIVO, c2);
-		Empresa e3 = new Empresa(null, "Empresa 3", "Rua Media", "389", null, "Bairro da Curva", "38452-670", 1, null, "31 93709-7631", "email@empresa3.com.br", Registro.ATIVO, c3);
+		Empresa e1 = new Empresa(null, "Empresa 1", "Rua Alta", "134", null, "Bairro da Hora", "18973-890", Permissao.SIM, null, "11 98709-5622", "email@empresa1.com.br", Registro.ATIVO, c1);
+		Empresa e2 = new Empresa(null, "Empresa 2", "Rua Baixa", "245", null, "Bairro da Quebrada", "08543-390", Permissao.SIM, null, "11 93241-3421", "email@empresa2.com.br", Registro.ATIVO, c2);
+		Empresa e3 = new Empresa(null, "Empresa 3", "Rua Media", "389", null, "Bairro da Curva", "38452-670", Permissao.NAO, null, "31 93709-7631", "email@empresa3.com.br", Registro.ATIVO, c3);
 		empresaRepository.saveAll(Arrays.asList(e1,e2,e3));
 		
 		Nivel n1 = new Nivel(null, "Junior", Registro.ATIVO);
@@ -133,7 +134,7 @@ public class VagasApplication implements CommandLineRunner{
 		Contrato ct3 = new Contrato(null,"ASSOCIADO",Registro.ATIVO);
 		contratoRepository.saveAll(Arrays.asList(ct1,ct2,ct3));
 		
-		InfoContato inf1 = new InfoContato(null,"Claudia","11 978903240","claudia.brasil@pasquali.com.br",1,Registro.ATIVO);
+		InfoContato inf1 = new InfoContato(null,"Claudia","11 978903240","claudia.brasil@pasquali.com.br",Permissao.SIM,Registro.ATIVO);
 		infoContatoRepository.saveAll(Arrays.asList(inf1));
 		
 		VagaStatus vs1 = new VagaStatus(null,"CADASTRADA",Registro.ATIVO);
@@ -147,8 +148,8 @@ public class VagasApplication implements CommandLineRunner{
 		Vaga v1 = new Vaga(null, "Resumo", "Obs", Calendar.getInstance().getTime(), null, null, 2, null, null, car1, n3, l1, ct1, inf1, a1, vs1, e1);
 		vagaRepository.saveAll(Arrays.asList(v1));
 		
-		Usuario u1 = new Usuario(null, "admin", "admin", TipoUsuario.ADMIN, "Rinaldo Belisario Junior", "RinaldoBJr", null, "11 96908-3249", "rinaldobjr@gmail.com", 1, 1, Sexo.MASCULINO, Registro.ATIVO,est1,null,null);
-		Usuario u2 = new Usuario(null, "rinaldobjr", "admin", TipoUsuario.EDITOR,"Rinaldo Belisario Junior", "RinaldoBJr", null, "11 96908-3249", "rinaldobjr@gmail.com", 1, 1, Sexo.MASCULINO, Registro.ATIVO, est1,null,null);
+		Usuario u1 = new Usuario(null, "admin", "admin", TipoUsuario.ADMIN, "Rinaldo Belisario Junior", "RinaldoBJr", null, "11 96908-3249", "rinaldobjr@gmail.com", 1, Permissao.SIM, Sexo.MASCULINO, Registro.ATIVO,est1,null,null);
+		Usuario u2 = new Usuario(null, "rinaldobjr", "admin", TipoUsuario.EDITOR,"Rinaldo Belisario Junior", "RinaldoBJr", null, "11 96908-3249", "rinaldobjr@gmail.com", 1, Permissao.SIM, Sexo.MASCULINO, Registro.ATIVO, est1,null,null);
 		usuarioRepository.saveAll(Arrays.asList(u1,u2));
 		
 		LogAcao la1 = new LogAcao(null,TipoAcao.UPDATE,"Usuario",Calendar.getInstance().getTime(),"Alteracao de Status","Obs TEXT",u2);

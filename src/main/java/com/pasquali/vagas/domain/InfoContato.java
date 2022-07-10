@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.pasquali.vagas.domain.enums.Permissao;
 import com.pasquali.vagas.domain.enums.Registro;
 
 @Entity
@@ -34,7 +35,7 @@ public class InfoContato implements Serializable{
 	private String email;
 	
 	@Column(name = "WHATSAPP", length = 1)
-	private int whatsapp;
+	private Integer whatsapp;
 	
 	@Column(name = "ATIVO", length = 1)
 	private Integer ativo;
@@ -44,13 +45,13 @@ public class InfoContato implements Serializable{
 
 	public InfoContato() {}
 
-	public InfoContato(Integer id, String nomeApelido, String telefone, String email, int whatsapp, Registro ativo) {
+	public InfoContato(Integer id, String nomeApelido, String telefone, String email, Permissao whatsapp, Registro ativo) {
 		super();
 		this.id = id;
 		this.nomeApelido = nomeApelido;
 		this.telefone = telefone;
 		this.email = email;
-		this.whatsapp = whatsapp;
+		this.whatsapp = whatsapp.getCod();
 		this.ativo = ativo.getCod();
 	}
 
@@ -92,12 +93,12 @@ public class InfoContato implements Serializable{
 		this.email = email;
 	}
 
-	public int getWhatsapp() {
-		return whatsapp;
+	public Permissao getWhatsapp() {
+		return Permissao.toEnum(whatsapp);
 	}
 
-	public void setWhatsapp(int whatsapp) {
-		this.whatsapp = whatsapp;
+	public void setWhatsapp(Permissao whatsapp) {
+		this.whatsapp = whatsapp.getCod();
 	}
 
 	public Registro getAtivo() {

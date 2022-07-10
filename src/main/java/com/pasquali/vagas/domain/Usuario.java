@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.pasquali.vagas.domain.enums.Permissao;
 import com.pasquali.vagas.domain.enums.Registro;
 import com.pasquali.vagas.domain.enums.Sexo;
 import com.pasquali.vagas.domain.enums.TipoUsuario;
@@ -86,7 +87,7 @@ public class Usuario implements Serializable {
 
 
 	public Usuario(Integer id, String login, String senha, TipoUsuario tipoUsuario, String nomeCompleto,
-			String nomeApelido, String telefone, String celular, String email, Integer enviaEmail, int whatsapp,
+			String nomeApelido, String telefone, String celular, String email, Integer enviaEmail, Permissao whatsapp,
 			Sexo sexo, Registro ativo, Estado estado,List<LogAcao> logsAcao, List<LogEnvioEmail> logsEnvioEmail) {
 		super();
 		this.id = id;
@@ -99,7 +100,7 @@ public class Usuario implements Serializable {
 		this.celular = celular;
 		this.email = email;
 		this.enviaEmail = enviaEmail;
-		this.whatsapp = whatsapp;
+		this.whatsapp = whatsapp.getCod();
 		this.sexo = sexo.getCod();
 		this.ativo = ativo.getCod();
 		this.estado = estado;
@@ -195,12 +196,12 @@ public class Usuario implements Serializable {
 		this.enviaEmail = enviaEmail;
 	}
 
-	public int getWhatsapp() {
-		return whatsapp;
+	public Permissao getWhatsapp() {
+		return Permissao.toEnum(whatsapp);
 	}
 
-	public void setWhatsapp(int whatsapp) {
-		this.whatsapp = whatsapp;
+	public void setWhatsapp(Permissao whatsapp) {
+		this.whatsapp = whatsapp.getCod();
 	}
 
 	public Sexo getSexo() {
