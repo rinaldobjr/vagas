@@ -1,7 +1,7 @@
 package com.pasquali.vagas;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Calendar;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -144,20 +144,24 @@ public class VagasApplication implements CommandLineRunner{
 		VagaStatus vs5 = new VagaStatus(null,"CANCELADA",Registro.ATIVO);
 		vagaStatusRepository.saveAll(Arrays.asList(vs1,vs2,vs3,vs4,vs5));
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+		
 		//Vaga v1 = new Vaga(null, null, null, null, null, null, null, null, null, car3, null, null, null, null, a2, null, e3);
-		Vaga v1 = new Vaga(null, "Resumo", "Obs", Calendar.getInstance().getTime(), null, null, 2, null, null, car1, n3, l1, ct1, inf1, a1, vs1, e1);
+		//Calendar.getInstance().getTime()  //DataHora
+		Vaga v1 = new Vaga(null, "Resumo", "Obs", sdf.parse("2022/06/10 10:20"), null, null, 2, null, null, car1, n3, l1, ct1, inf1, a1, vs1, e1);
 		vagaRepository.saveAll(Arrays.asList(v1));
 		
 		Usuario u1 = new Usuario(null, "admin", "admin", TipoUsuario.ADMIN, "Rinaldo Belisario Junior", "RinaldoBJr", null, "11 96908-3249", "rinaldobjr@gmail.com", 1, Permissao.SIM, Sexo.MASCULINO, Registro.ATIVO,est1,null,null);
 		Usuario u2 = new Usuario(null, "rinaldobjr", "admin", TipoUsuario.EDITOR,"Rinaldo Belisario Junior", "RinaldoBJr", null, "11 96908-3249", "rinaldobjr@gmail.com", 1, Permissao.SIM, Sexo.MASCULINO, Registro.ATIVO, est1,null,null);
 		usuarioRepository.saveAll(Arrays.asList(u1,u2));
 		
-		LogAcao la1 = new LogAcao(null,TipoAcao.UPDATE,"Usuario",Calendar.getInstance().getTime(),"Alteracao de Status","Obs TEXT",u2);
-		LogAcao la2 = new LogAcao(null,TipoAcao.UPDATE,"Usuario",Calendar.getInstance().getTime(),"Alteracao de NomeCompleto","Obs TEXT",u2);
+		LogAcao la1 = new LogAcao(null,TipoAcao.UPDATE,"Usuario",sdf.parse("2022/06/12 15:34"),"Alteracao de Status","Obs TEXT",u2);
+		LogAcao la2 = new LogAcao(null,TipoAcao.UPDATE,"Usuario",sdf.parse("2022/06/12 15:45"),"Alteracao de NomeCompleto","Obs TEXT",u2);
 		logAcaoRepository.saveAll(Arrays.asList(la1,la2));
 		
-		LogEnvioEmail le1 = new LogEnvioEmail(null, Calendar.getInstance().getTime(), 25, u2);
-		LogEnvioEmail le2 = new LogEnvioEmail(null, Calendar.getInstance().getTime(), 30, u2);
+		//Calendar.getInstance().getTime()
+		LogEnvioEmail le1 = new LogEnvioEmail(null, sdf.parse("2022/06/13 12:10"), 25, u2);
+		LogEnvioEmail le2 = new LogEnvioEmail(null, sdf.parse("2022/06/13 12:11"), 30, u2);
 		logEnvioEmailRepository.saveAll(Arrays.asList(le1,le2));	
 		
 		

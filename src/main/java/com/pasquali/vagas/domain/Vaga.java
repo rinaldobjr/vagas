@@ -14,8 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 public class Vaga implements Serializable {
 
@@ -90,7 +88,6 @@ public class Vaga implements Serializable {
 	private VagaStatus vagaStatus;
 
 	// Relation
-	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "empresa_id")
 	private Empresa empresa;

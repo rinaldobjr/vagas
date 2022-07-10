@@ -14,8 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.pasquali.vagas.domain.enums.Permissao;
 import com.pasquali.vagas.domain.enums.Registro;
 import com.pasquali.vagas.domain.enums.Sexo;
@@ -70,17 +68,16 @@ public class Usuario implements Serializable {
 	public Usuario() {}
 	
 	// Relation
-	@JsonManagedReference
+	//@JsonManagedReference
 	@OneToMany(mappedBy = "usuario")
 	private List<LogAcao> logsAcao = new ArrayList<>();
 
 	// Relation
-	@JsonManagedReference
+
 	@OneToMany(mappedBy = "usuario")
 	private List<LogEnvioEmail> logsEnvioEmail = new ArrayList<>();
 
 	// Relation
-	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "estado_id")
 	private Estado estado;

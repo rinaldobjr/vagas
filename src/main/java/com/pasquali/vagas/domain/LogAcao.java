@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pasquali.vagas.domain.enums.TipoAcao;
 
 @Entity
@@ -46,7 +46,7 @@ public class LogAcao implements Serializable {
 	public LogAcao() {}
 	
 	// Relation
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
