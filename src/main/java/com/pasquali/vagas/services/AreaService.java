@@ -28,9 +28,14 @@ public class AreaService {
 		return listagem;
 	}
 	
-	public Area inserir(Area obj) {
+	public Area inserindo(Area obj) {
 		obj.setId(null);
 		return areaRepository.save(obj);
+	}
+	
+	public Area alterando(Area obj) {
+		buscar(obj.getId());
+		return areaRepository.save(obj); 
 	}
 
 }

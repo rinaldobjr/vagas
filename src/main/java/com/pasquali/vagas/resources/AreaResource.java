@@ -24,7 +24,7 @@ public class AreaResource {
 	
 	//FindById
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> findById(@PathVariable Integer id) {
+	public ResponseEntity<Area> findById(@PathVariable Integer id) {
 		Area objeto = areaService.buscar(id);
 		return ResponseEntity.ok().body(objeto);
 	}
@@ -39,10 +39,18 @@ public class AreaResource {
 	// Insert
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> inserir(@RequestBody Area obj) {
-		obj = areaService.inserir(obj);
+		obj = areaService.inserindo(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
-
+	
+	// Update
+	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> alterar(@RequestBody Area obj, @PathVariable Integer id) {
+		obj.setId(id);
+		obj = areaService.alterando(obj);
+		return ResponseEntity.noContent().build();
+	}
+	
 }
