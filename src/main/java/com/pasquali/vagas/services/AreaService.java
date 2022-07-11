@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.pasquali.vagas.domain.Area;
 import com.pasquali.vagas.repositories.AreaRepository;
+import com.pasquali.vagas.services.exception.DataIntegrityException;
 import com.pasquali.vagas.services.exception.ObjectNotFoundException;
 
 
@@ -36,6 +38,15 @@ public class AreaService {
 	public Area alterando(Area obj) {
 		buscar(obj.getId());
 		return areaRepository.save(obj); 
+	}
+	
+	public void deletando(Integer id) {
+		buscar(id);
+		try {
+			areaRepository.deleteById(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possível excluir uma Área que possui dependência em outra Tabela!");
+		}
 	}
 
 }

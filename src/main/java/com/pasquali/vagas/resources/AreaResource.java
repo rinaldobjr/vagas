@@ -53,4 +53,11 @@ public class AreaResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	// Delete
+	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> deletar(@PathVariable Integer id) {
+		areaService.deletando(id);
+		return ResponseEntity.noContent().build();
+	}
+	
 }
