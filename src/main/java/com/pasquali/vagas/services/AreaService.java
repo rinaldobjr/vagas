@@ -27,5 +27,10 @@ public class AreaService {
 		List<Area> listagem = areaRepository.findAll();
 		return listagem;
 	}
+	
+	public Area inserir(Area obj) {
+		obj.setId(null);
+		return areaRepository.save(obj);
+	}
 
 }
