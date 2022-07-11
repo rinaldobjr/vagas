@@ -26,8 +26,7 @@ public class AreaService {
 	}
 	
 	public List<Area> listar() {
-		List<Area> listagem = areaRepository.findAll();
-		return listagem;
+		return areaRepository.findAll();
 	}
 	
 	public Area inserindo(Area obj) {
