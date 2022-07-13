@@ -47,5 +47,6 @@ public class AreaService {
 			throw new DataIntegrityException("Não é possível excluir uma Área que possui dependência em outra Tabela!");
 		}
 	}
+	
 
 }

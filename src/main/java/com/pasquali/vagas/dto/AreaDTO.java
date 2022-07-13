@@ -3,7 +3,6 @@ package com.pasquali.vagas.dto;
 import java.io.Serializable;
 
 import com.pasquali.vagas.domain.Area;
-import com.pasquali.vagas.domain.enums.Registro;
 
 public class AreaDTO implements Serializable{
 
