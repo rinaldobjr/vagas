@@ -112,8 +112,8 @@ public class VagasApplication implements CommandLineRunner{
 		
 		Area a1 = new Area(null, "Tecnologia da Informação","TI", Registro.ATIVO);
 		Area a2 = new Area(null, "Recursos Humanos","RH", Registro.ATIVO);
-		Area a3 = new Area(null, "FINANÇAS","FI", Registro.ATIVO);
-		Area a4 = new Area(null, "CONTABILIDADE","CT", Registro.ATIVO);
+		Area a3 = new Area(null, "Finanças","FI", Registro.ATIVO);
+		Area a4 = new Area(null, "Contabilidade","CT", Registro.ATIVO);
 		areaRepository.saveAll(Arrays.asList(a1,a2,a3,a4));
 		
 		Empresa e1 = new Empresa(null, "Empresa 1", "Rua Alta", "134", null, "Bairro da Hora", "18973-890", Permissao.SIM, null, "11 98709-5622", "email@empresa1.com.br", Registro.ATIVO, c1);
