@@ -35,9 +35,6 @@ public class Area implements Serializable{
 
 	@OneToMany(mappedBy="area")
 	private List<Vaga> vagas = new ArrayList<>();
-	
-	public Area() {
-	}
 
 	public Area(Integer id, String nomeArea, String nome, Registro ativo) {
 		super();

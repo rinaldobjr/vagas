@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +45,8 @@ public class AreaResource {
 	
 	// Insert
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> inserir(@RequestBody Area obj) {
+	public ResponseEntity<Void> inserir(@Valid @RequestBody AreaDTO objDto) {
+		Area obj = areaService.fromDTO(objDto);
 		obj = areaService.inserindo(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -76,6 +79,5 @@ public class AreaResource {
 		Page<AreaDTO> listaDTO = lista.map(obj -> new AreaDTO(obj));
 		return ResponseEntity.ok().body(listaDTO);
 	}
-	
-	//PageRequest.of(page.linesPerPage.Direction.valueOf(directon),orderBy);
+
 }

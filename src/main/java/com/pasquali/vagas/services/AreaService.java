@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.pasquali.vagas.domain.Area;
+import com.pasquali.vagas.dto.AreaDTO;
 import com.pasquali.vagas.repositories.AreaRepository;
 import com.pasquali.vagas.services.exception.DataIntegrityException;
 import com.pasquali.vagas.services.exception.ObjectNotFoundException;
@@ -56,6 +57,11 @@ public class AreaService {
 		return areaRepository.findAll(pages);
 	}
 	
-	//PageRequest.of(page,linesPerPage,Direction.valueOf(direction),orderBy);
+	public Area fromDTO(AreaDTO objDto) {
+		Area retorno = new Area(objDto.getId(), objDto.getNomeArea(), objDto.getNome(), objDto.getAtivo() );
+		return retorno;
+	}
+	
+	
 
 }
