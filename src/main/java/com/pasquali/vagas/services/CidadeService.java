@@ -11,7 +11,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.pasquali.vagas.domain.Cidade;
-import com.pasquali.vagas.domain.enums.Registro;
 import com.pasquali.vagas.dto.CidadeDTO;
 import com.pasquali.vagas.repositories.CidadeRepository;
 import com.pasquali.vagas.services.exception.DataIntegrityException;

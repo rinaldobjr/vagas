@@ -1,3 +1,4 @@
 TODO
 
 1. Verificar Cidade endpoint Inserir e Alterar
+2. Verificar o campo ativo em todos os end poits de alterar e inserir

@@ -66,4 +66,5 @@ public class CargoService {
 		newObj.setNomeCargo(obj.getNomeCargo());
 		newObj.setAtivo(obj.getAtivo());
 	}
+	
 }

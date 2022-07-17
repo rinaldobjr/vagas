@@ -1,31 +1,27 @@
 package com.pasquali.vagas.dto;
 
-import java.io.Serializable;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.pasquali.vagas.domain.Cargo;
+import com.pasquali.vagas.domain.VagaStatus;
 import com.pasquali.vagas.domain.enums.Registro;
 
-public class CargoDTO implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class VagaStatusDTO {
 
 	private Integer id;
 	
 	@NotNull(message = "Preenchimento obrigatório")
-	@Size(min = 5, max = 100, message = "O tamanho deve ser entre 5 a 100 caracteres")
-	private String nomeCargo;
-	
+	@Size(min = 5, max = 64, message = "O tamanho deve ser entre 5 a 64 caracteres")
+	private String statusNome;
+
 	@NotNull
 	private Registro ativo;
+
+	public VagaStatusDTO() {}
 	
-	public CargoDTO() { }
-	
-	public CargoDTO(Cargo obj) { 
+	public VagaStatusDTO(VagaStatus obj) {
 		id = obj.getId();
-		nomeCargo = obj.getNomeCargo();
+		statusNome = obj.getStatusNome();
 		ativo = obj.getAtivo();
 	}
 
@@ -37,12 +33,12 @@ public class CargoDTO implements Serializable {
 		this.id = id;
 	}
 
-	public String getNomeCargo() {
-		return nomeCargo;
+	public String getStatusNome() {
+		return statusNome;
 	}
 
-	public void setNomeCargo(String nomeCargo) {
-		this.nomeCargo = nomeCargo;
+	public void setStatusNome(String statusNome) {
+		this.statusNome = statusNome;
 	}
 
 	public Registro getAtivo() {
@@ -56,5 +52,7 @@ public class CargoDTO implements Serializable {
 			this.ativo = Registro.INATIVO;
 		}
 	}
+
+	
 	
 }

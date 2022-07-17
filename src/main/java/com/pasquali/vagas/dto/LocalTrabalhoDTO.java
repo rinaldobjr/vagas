@@ -5,10 +5,10 @@ import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.pasquali.vagas.domain.Cargo;
+import com.pasquali.vagas.domain.LocalTrabalho;
 import com.pasquali.vagas.domain.enums.Registro;
 
-public class CargoDTO implements Serializable {
+public class LocalTrabalhoDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -16,16 +16,16 @@ public class CargoDTO implements Serializable {
 	
 	@NotNull(message = "Preenchimento obrigatório")
 	@Size(min = 5, max = 100, message = "O tamanho deve ser entre 5 a 100 caracteres")
-	private String nomeCargo;
+	private String nomeLocal;
 	
 	@NotNull
 	private Registro ativo;
 	
-	public CargoDTO() { }
+	public LocalTrabalhoDTO() { }
 	
-	public CargoDTO(Cargo obj) { 
+	public LocalTrabalhoDTO(LocalTrabalho obj) { 
 		id = obj.getId();
-		nomeCargo = obj.getNomeCargo();
+		nomeLocal = obj.getNomeLocal();
 		ativo = obj.getAtivo();
 	}
 
@@ -37,12 +37,12 @@ public class CargoDTO implements Serializable {
 		this.id = id;
 	}
 
-	public String getNomeCargo() {
-		return nomeCargo;
+	public String getNomeLocal() {
+		return nomeLocal;
 	}
 
-	public void setNomeCargo(String nomeCargo) {
-		this.nomeCargo = nomeCargo;
+	public void setNomeLocal(String nomeLocal) {
+		this.nomeLocal = nomeLocal;
 	}
 
 	public Registro getAtivo() {

@@ -55,8 +55,9 @@ public class AreaResource {
 	}
 	
 	// Update
-	@RequestMapping(value="/{id}", method = RequestMethod.PUT, 
-			consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/{id}", method = RequestMethod.PUT,
+			consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE
+			)
 	public ResponseEntity<Void> alterar(@RequestBody Area obj, @PathVariable Integer id) {
 		obj.setId(id);
 		obj = areaService.alterando(obj);

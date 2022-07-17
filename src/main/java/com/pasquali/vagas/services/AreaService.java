@@ -65,5 +65,6 @@ public class AreaService {
 	private void alterandoDados(Area newObj, Area obj) {
 		newObj.setNomeArea(obj.getNomeArea());
 		newObj.setNome(obj.getNome());
+		newObj.setAtivo(obj.getAtivo());
 	}
 }

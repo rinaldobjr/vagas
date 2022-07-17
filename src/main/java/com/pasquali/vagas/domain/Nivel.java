@@ -40,7 +40,7 @@ public class Nivel implements Serializable{
 		super();
 		this.id = id;
 		this.nomeNivel = nomeNivel;
-		this.ativo = ativo.getCod();
+		this.ativo = (ativo == null)?1:ativo.getCod();
 	}
 
 	@Override
