@@ -39,7 +39,8 @@ public class AreaService {
 	}
 	
 	public Area alterando(Area obj) {
-		buscar(obj.getId());
+		Area newObj = buscar(obj.getId());
+		alterandoDados(newObj, obj);
 		return areaRepository.save(obj); 
 	}
 	
@@ -58,10 +59,11 @@ public class AreaService {
 	}
 	
 	public Area fromDTO(AreaDTO objDto) {
-		Area retorno = new Area(objDto.getId(), objDto.getNomeArea(), objDto.getNome(), objDto.getAtivo() );
-		return retorno;
+		return new Area(objDto.getId(), objDto.getNomeArea(), objDto.getNome(), objDto.getAtivo() );
 	}
 	
-	
-
+	private void alterandoDados(Area newObj, Area obj) {
+		newObj.setNomeArea(obj.getNomeArea());
+		newObj.setNome(obj.getNome());
+	}
 }

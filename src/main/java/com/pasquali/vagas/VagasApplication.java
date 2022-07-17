@@ -95,9 +95,9 @@ public class VagasApplication implements CommandLineRunner{
 		Cargo car3 = new Cargo(null, "Técnico De Suporte Remoto", Registro.ATIVO);
 		cargoRepository.saveAll(Arrays.asList(car1,car2,car3));
 		
-		Estado est1 = new Estado(null, "São Paulo", Registro.ATIVO);
-		Estado est2 = new Estado(null, "Minas Gerais", Registro.ATIVO);
-		Estado est3 = new Estado(null, "Rio de Janeiro", Registro.ATIVO);
+		Estado est1 = new Estado(null, "São Paulo", "SP", Registro.ATIVO);
+		Estado est2 = new Estado(null, "Minas Gerais", "MG",Registro.ATIVO);
+		Estado est3 = new Estado(null, "Rio de Janeiro", "RJ", Registro.ATIVO);
 		
 		Cidade c1 = new Cidade(null, "Jundiai", Registro.ATIVO, est1);
 		Cidade c2 = new Cidade(null, "São Paulo", Registro.ATIVO, est1);

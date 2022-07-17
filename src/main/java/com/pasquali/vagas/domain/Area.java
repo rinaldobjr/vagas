@@ -36,12 +36,14 @@ public class Area implements Serializable{
 	@OneToMany(mappedBy="area")
 	private List<Vaga> vagas = new ArrayList<>();
 
+	public Area() {}
+	
 	public Area(Integer id, String nomeArea, String nome, Registro ativo) {
 		super();
 		this.id = id;
 		this.nomeArea = nomeArea;
 		this.nome = nome;
-		this.ativo = ativo.getCod();
+		this.ativo = (ativo == null)?1:ativo.getCod();
 	}
 
 	@Override

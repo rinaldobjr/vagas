@@ -40,7 +40,7 @@ public class Cargo implements Serializable{
 		super();
 		this.id = id;
 		this.nomeCargo = nomeCargo;
-		this.ativo = ativo.getCod();
+		this.ativo = (ativo == null)?1:ativo.getCod();
 	}
 
 	@Override

@@ -5,50 +5,41 @@ import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.pasquali.vagas.domain.Area;
+import com.pasquali.vagas.domain.Cidade;
 import com.pasquali.vagas.domain.enums.Registro;
 
-public class AreaDTO implements Serializable {
+public class CidadeDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-
-	@NotNull(message = "Preenchimento obrigatório")
-	@Size(min = 5, max = 50, message = "O tamanho deve ser entre 5 a 50 caracteres")
-	private String nomeArea;
-
-	@NotNull(message = "Preenchimento obrigatório")
-	@Size(min = 2, max = 7, message = "O tamanho deve ser entre 2 a 7 caracteres")
+	
+	@NotNull(message = "Preenchimento obrigatorio")
+	@Size(min = 5, max = 80, message = "O tamanho deve ser entre 5 a 45 caracteres")
 	private String nome;
-
+	
+	@NotNull
+	private Integer estado;
+	
 	@NotNull
 	private Registro ativo;
-
-	public AreaDTO() {
+	
+	public CidadeDTO() {
 	}
-
-	public AreaDTO(Area obj) {
+	
+	public CidadeDTO(Cidade obj) {
 		id = obj.getId();
 		nome = obj.getNome();
-		nomeArea = obj.getNomeArea();
 		ativo = obj.getAtivo();
+		estado = obj.getEstado().getId();
 	}
-
+	
 	public Integer getId() {
 		return id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getNomeArea() {
-		return nomeArea;
-	}
-
-	public void setNomeArea(String nomeArea) {
-		this.nomeArea = nomeArea;
 	}
 
 	public String getNome() {
@@ -71,4 +62,14 @@ public class AreaDTO implements Serializable {
 		}
 	}
 
+	public Integer getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Integer estado) {
+		this.estado = estado;
+	}
+	
+	
+	
 }

@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,14 +29,14 @@ public class AreaResource {
 	@Autowired
 	private AreaService areaService;
 	
-	//FindById
+	// FindById
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Area> findById(@PathVariable Integer id) {
 		Area objeto = areaService.buscar(id);
 		return ResponseEntity.ok().body(objeto);
 	}
 	
-	//ListAll
+	// ListAll
 	@RequestMapping(value="/listar", method=RequestMethod.GET)
 	public ResponseEntity<List<AreaDTO>> listando() {
 		List<Area> lista = areaService.listar();
@@ -54,7 +55,8 @@ public class AreaResource {
 	}
 	
 	// Update
-	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value="/{id}", method = RequestMethod.PUT, 
+			consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> alterar(@RequestBody Area obj, @PathVariable Integer id) {
 		obj.setId(id);
 		obj = areaService.alterando(obj);

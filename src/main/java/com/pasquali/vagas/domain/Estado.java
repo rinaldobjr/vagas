@@ -16,43 +16,48 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.pasquali.vagas.domain.enums.Registro;
 
 @Entity
-public class Estado implements Serializable{
+public class Estado implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Integer id;
-	
+
 	@Column(name = "NOME", length = 40)
 	private String nome;
-	
+
+	@Column(name = "SIGLA", length = 2)
+	private String sigla;
+
 	@Column(name = "ATIVO", length = 1)
 	private Integer ativo;
-	
-	//Relation
-	@JsonBackReference
-	@OneToMany(mappedBy="estado")
-	private List<Cidade> cidades = new ArrayList<>();
-	
-	//Relation
-	@JsonBackReference
-	@OneToMany(mappedBy="estado")
-	private List<Usuario> usuarios = new ArrayList<>();
-	
-	public Estado() {}
 
-	public Estado(Integer id, String nome, Registro ativo) {
+	// Relation
+	@JsonBackReference
+	@OneToMany(mappedBy = "estado")
+	private List<Cidade> cidades = new ArrayList<>();
+
+	// Relation
+	@JsonBackReference
+	@OneToMany(mappedBy = "estado")
+	private List<Usuario> usuarios = new ArrayList<>();
+
+	public Estado() {
+	}
+
+	public Estado(Integer id, String nome, String sigla, Registro ativo) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.sigla = sigla;
 		this.ativo = ativo.getCod();
 	}
 
 	@Override
 	public String toString() {
-		return "Estado [id=" + id + ", nome=" + nome + ", ativo=" + ativo + "]";
+		return "Estado [id=" + id + ", nome=" + nome + ", sigla=" + sigla + ", ativo=" + ativo + "]";
 	}
 
 	public Integer getId() {
@@ -71,6 +76,14 @@ public class Estado implements Serializable{
 		this.nome = nome;
 	}
 
+	public String getSigla() {
+		return sigla;
+	}
+
+	public void setSigla(String sigla) {
+		this.sigla = sigla;
+	}
+
 	public Registro getAtivo() {
 		return Registro.toEnum(ativo);
 	}
@@ -78,7 +91,7 @@ public class Estado implements Serializable{
 	public void setAtivo(Registro ativo) {
 		this.ativo = ativo.getCod();
 	}
-	
+
 	public List<Cidade> getCidades() {
 		return cidades;
 	}
@@ -103,5 +116,5 @@ public class Estado implements Serializable{
 		Estado other = (Estado) obj;
 		return Objects.equals(id, other.id);
 	}
-	
+
 }

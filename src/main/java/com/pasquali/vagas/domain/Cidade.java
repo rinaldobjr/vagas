@@ -38,15 +38,14 @@ public class Cidade implements Serializable{
 	
 	//@OneToMany(mappedBy="cidade")
 	//private List<Empresa> empresas = new ArrayList<>();
-	
-	public Cidade() {
-	}
+	//+++
+	public Cidade(Integer integer, String string, Registro registro, Integer integer2) {}
 
 	public Cidade(Integer id, String nome, Registro ativo, Estado estado) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.ativo = ativo.getCod();
+		this.ativo = (ativo == null)?1:ativo.getCod();
 		this.estado = estado;
 	}
 

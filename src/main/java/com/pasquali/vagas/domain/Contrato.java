@@ -40,7 +40,7 @@ public class Contrato implements Serializable{
 		super();
 		this.id = id;
 		this.nomeContrato = nomeContrato;
-		this.ativo = ativo.getCod();
+		this.ativo = (ativo == null)?1:ativo.getCod();
 	}
 
 	@Override
