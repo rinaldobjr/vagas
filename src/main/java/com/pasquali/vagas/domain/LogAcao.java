@@ -17,7 +17,10 @@ import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pasquali.vagas.domain.enums.TipoAcao;
 
+import lombok.Builder;
+
 @Entity
+@Builder
 public class LogAcao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -33,31 +36,35 @@ public class LogAcao implements Serializable {
 	@Column(name = "TABELA", length = 35)
 	private String tabela;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATA_HORA")
-	private Date dataHora;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "DATA")
+	private Date data;
 
+	@Column(name = "HORA")
+	private String  hora;
+	
 	@Column(name = "DESCRICAO", length = 255)
 	private String descricao;
 
 	@Column(name = "DESCRICAO_ACAO", length = 2048)
 	private String descricaoAcao;
 
-	public LogAcao() {}
-	
 	// Relation
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 
-	public LogAcao(Integer id, TipoAcao tipoAcao, String tabela, Date dataHora, String descricao, String descricaoAcao,
+	public LogAcao() {}
+	
+	public LogAcao(Integer id, TipoAcao tipoAcao, String tabela, Date data, String hora, String descricao, String descricaoAcao,
 			Usuario usuario) {
 		super();
 		this.id = id;
 		this.tipoAcao = tipoAcao.getCod();
 		this.tabela = tabela;
-		this.dataHora = dataHora;
+		this.data = data;
+		this.hora = hora;
 		this.descricao = descricao;
 		this.descricaoAcao = descricaoAcao;
 		this.usuario = usuario;
@@ -65,8 +72,8 @@ public class LogAcao implements Serializable {
 
 	@Override
 	public String toString() {
-		return "LogAcao [id=" + id + ", tipoAcao=" + tipoAcao + ", tabela=" + tabela + ", dataHora="
-				+ dataHora + ", descricao=" + descricao + ", descricaoAcao=" + descricaoAcao + ", usuario=" + usuario + "]";
+		return "LogAcao [id=" + id + ", tipoAcao=" + tipoAcao + ", tabela=" + tabela + ", data=" + data + ", hora="
+				+ hora + ", descricao=" + descricao + ", descricaoAcao=" + descricaoAcao + ", usuario=" + usuario + "]";
 	}
 
 	public Integer getId() {
@@ -93,12 +100,32 @@ public class LogAcao implements Serializable {
 		this.tabela = tabela;
 	}
 
-	public Date getDataHora() {
-		return dataHora;
+	public Date getData() {
+		return data;
 	}
 
-	public void setDataHora(Date dataHora) {
-		this.dataHora = dataHora;
+	public void setData(Date data) {
+		this.data = data;
+	}
+
+	public String getHora() {
+		return hora;
+	}
+
+	public void setHora(String hora) {
+		this.hora = hora;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public void setTipoAcao(Integer tipoAcao) {
+		this.tipoAcao = tipoAcao;
 	}
 
 	public String getDescricao() {
@@ -113,7 +140,7 @@ public class LogAcao implements Serializable {
 		return descricaoAcao;
 	}
 
-	public void setDescricaoAcaor(String descricaoAcao) {
+	public void setDescricaoAcao(String descricaoAcao) {
 		this.descricaoAcao = descricaoAcao;
 	}
 
@@ -132,6 +159,11 @@ public class LogAcao implements Serializable {
 			return false;
 		LogAcao other = (LogAcao) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	public void setUsuario(Object setId) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

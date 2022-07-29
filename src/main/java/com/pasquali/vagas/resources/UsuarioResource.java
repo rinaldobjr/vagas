@@ -19,14 +19,14 @@ public class UsuarioResource {
 	@Autowired
 	private UsuarioService usuarioService;
 	
-	//FindById
+	// FindById
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> findById(@PathVariable Integer id) {
 		Usuario objeto = usuarioService.buscar(id);
 		return ResponseEntity.ok().body(objeto);
 	}
 	
-	//ListAll
+	// ListAll
 	@RequestMapping(value="/listar", method=RequestMethod.GET)
 	public ResponseEntity<List<Usuario>> listando() {
 		List<Usuario> lista = usuarioService.listar();

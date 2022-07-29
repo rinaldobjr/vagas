@@ -23,8 +23,7 @@ public class UsuarioService {
 	}
 	
 	public List<Usuario> listar() {
-		List<Usuario> listagem = usuarioRepository.findAll();
-		return listagem;
+		return usuarioRepository.findAll();
 	}
 
 }

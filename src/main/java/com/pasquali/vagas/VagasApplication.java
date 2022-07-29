@@ -1,7 +1,9 @@
 package com.pasquali.vagas;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -40,6 +42,7 @@ import com.pasquali.vagas.repositories.NivelRepository;
 import com.pasquali.vagas.repositories.UsuarioRepository;
 import com.pasquali.vagas.repositories.VagaRepository;
 import com.pasquali.vagas.repositories.VagaStatusRepository;
+import com.pasquali.vagas.util.DataHora;
 
 @SpringBootApplication
 public class VagasApplication implements CommandLineRunner{
@@ -84,7 +87,36 @@ public class VagasApplication implements CommandLineRunner{
 		this.logEnvioEmailRepository = logEnvioEmailRepository;
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
+		/*
+		System.out.println("--INICIO------------------");
+		DataHora.verificaData(1963, 9, 18);
+		System.out.println("Somando: "+DataHora.somandoData(90));
+		System.out.println("--------------------");
+		System.out.println("Sua Idade é "+DataHora.calculaIdade("18/09/1963", "dd/MM/yyyy")+" anos");
+		System.out.println("--------------------");
+		LocalDate date = LocalDate.of(2022, 7, 18);
+		System.out.println("Numero da Semana : "+DataHora.getDayNumberNew(date));
+		System.out.println("Dia da Semana: "+DataHora.getDayStringNew(date,Locale.ROOT));
+		
+		
+		LocalDate date1 = LocalDate.of(2020, Month.JANUARY, 8);
+		System.out.println("Data 1: "+date1);
+		LocalDate date2 = LocalDate.ofEpochDay(18269);
+		System.out.println("Data 2: "+date2);
+		LocalDate date3 = LocalDate.ofYearDay(2020, 8);
+		System.out.println("Data 3: "+date3);
+		LocalDate date4 = LocalDate.parse("2020-01-08");
+		System.out.println("Data 4: "+date4);
+		//LocalDate date5 = LocalDate.parse("8-Jan-2020", DateTimeFormatter.ofPattern("d-MMM-yyyy"));
+		//System.out.println("Data 5: "+date5);
+		System.out.println("--------------------");
+		
+		System.out.println("Data: "+ DataHora.getDateWithoutTimeUsingCalendar());
+		System.out.println("Data: "+ DataHora.getDateWithoutTimeUsingFormat());
+		System.out.println("--------------------");
+		DataHora.datas();
+		*/
 		SpringApplication.run(VagasApplication.class, args);
 	}
 
@@ -147,6 +179,8 @@ public class VagasApplication implements CommandLineRunner{
 		vagaStatusRepository.saveAll(Arrays.asList(vs1,vs2,vs3,vs4,vs5));
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+		//SimpleDateFormat dataDia = new SimpleDateFormat("yyyy/MM/dd");
+		//SimpleDateFormat horaDia = new SimpleDateFormat("HH:mm:ss");
 		
 		//Vaga v1 = new Vaga(null, null, null, null, null, null, null, null, null, car3, null, null, null, null, a2, null, e3);
 		//Calendar.getInstance().getTime()  //DataHora
@@ -156,10 +190,11 @@ public class VagasApplication implements CommandLineRunner{
 		Usuario u1 = new Usuario(null, "admin", "admin", TipoUsuario.ADMIN, "Rinaldo Belisario Junior", "RinaldoBJr", null, "11 96908-3249", "rinaldobjr@gmail.com", 1, Permissao.SIM, Sexo.MASCULINO, Registro.ATIVO,est1,null,null);
 		Usuario u2 = new Usuario(null, "rinaldobjr", "admin", TipoUsuario.EDITOR,"Rinaldo Belisario Junior", "RinaldoBJr", null, "11 96908-3249", "rinaldobjr@gmail.com", 1, Permissao.SIM, Sexo.MASCULINO, Registro.ATIVO, est1,null,null);
 		usuarioRepository.saveAll(Arrays.asList(u1,u2));
-		
-		LogAcao la1 = new LogAcao(null,TipoAcao.UPDATE,"Usuario",sdf.parse("2022/06/12 15:34"),"Alteracao de Status","Obs TEXT",u2);
-		LogAcao la2 = new LogAcao(null,TipoAcao.UPDATE,"Usuario",sdf.parse("2022/06/12 15:45"),"Alteracao de NomeCompleto","Obs TEXT",u2);
-		logAcaoRepository.saveAll(Arrays.asList(la1,la2));
+		Date hoje = DataHora.dataHoje();
+		LogAcao la1 = new LogAcao(null,TipoAcao.UPDATE,"Usuario", hoje, "15:34","Alteracao de Status","Obs TEXT",u2);
+		LogAcao la2 = new LogAcao(null,TipoAcao.UPDATE,"Usuario", hoje, "15:45","Alteracao de NomeCompleto","Obs TEXT",u2);
+		LogAcao la3 = new LogAcao(null,TipoAcao.CREATE,"Nivel", hoje, "15:50","Insercao de Dados","Obs TEXT",u2);
+		logAcaoRepository.saveAll(Arrays.asList(la1,la2,la3));
 		
 		//Calendar.getInstance().getTime()
 		LogEnvioEmail le1 = new LogEnvioEmail(null, sdf.parse("2022/06/13 12:10"), 25, u2);
