@@ -1,6 +1,8 @@
 package com.pasquali.vagas.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.pasquali.vagas.domain.enums.Registro;
@@ -36,10 +39,12 @@ public class Cidade implements Serializable{
 	@JoinColumn(name = "estado_id")
 	private Estado estado;
 	
-	//@OneToMany(mappedBy="cidade")
-	//private List<Empresa> empresas = new ArrayList<>();
+	@OneToMany(mappedBy="cidade")
+	private List<Empresa> empresas = new ArrayList<>();
+	
 	//+++
-	public Cidade(Integer integer, String string, Registro registro, Integer integer2) {}
+	public Cidade() {}
+	//public Cidade(Integer integer, String string, Registro registro, Integer integer2) {}
 
 	public Cidade(Integer id, String nome, Registro ativo, Estado estado) {
 		super();

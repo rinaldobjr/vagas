@@ -58,8 +58,8 @@ public class CidadeService {
 	}
 
 	public Cidade fromDTO(CidadeDTO objDto) {
-		return new Cidade(objDto.getId(), objDto.getNome(), objDto.getAtivo(), objDto.getEstado());
-		//return new Cidade(null, null, null, null)
+		//return new Cidade(objDto.getId(), objDto.getNome(), objDto.getAtivo(), objDto.getEstado());
+		return new Cidade(null, null, null, null);
 	}
 
 	private void alterandoDados(Cidade newObj, Cidade obj) {

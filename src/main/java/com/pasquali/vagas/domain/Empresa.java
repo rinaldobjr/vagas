@@ -198,6 +198,26 @@ public class Empresa implements Serializable {
 		this.ativo = ativo.getCod();
 	}
 
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
+
+	public List<Vaga> getVagas() {
+		return vagas;
+	}
+
+	public void setVagas(List<Vaga> vagas) {
+		this.vagas = vagas;
+	}
+
+	public void setWhatsapp(Integer whatsapp) {
+		this.whatsapp = whatsapp;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
