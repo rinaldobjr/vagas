@@ -9,10 +9,13 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -21,22 +24,40 @@ import com.pasquali.vagas.domain.Cargo;
 import com.pasquali.vagas.dto.CargoDTO;
 import com.pasquali.vagas.services.CargoService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
-@RequestMapping(value="/cargo")
+@RequestMapping(value="/api/cargo")
 public class CargoResource {
 	
 	@Autowired
 	private CargoService cargoService;
 	
 	// FindById
-	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+	@ApiOperation(value = "Get Cargo by ID")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "ok"),
+            @ApiResponse(code = 201, message = "Created"),
+            @ApiResponse(code = 401, message = "Access denied"),
+            @ApiResponse(code = 400, message = "Bad request"),
+            @ApiResponse(code = 500, message = "Internal server error") })
+	@GetMapping(value="/{id}", produces = "application/json")
 	public ResponseEntity<?> findById(@PathVariable Integer id) {
 		Cargo objeto = cargoService.buscar(id);
 		return ResponseEntity.ok().body(objeto);
 	}
 	
 	// ListAll
-	@RequestMapping(value="/listar", method=RequestMethod.GET)
+	@ApiOperation(value = "Get Cargo Grid List")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "ok"),
+            @ApiResponse(code = 201, message = "Created"),
+            @ApiResponse(code = 401, message = "Access denied"),
+            @ApiResponse(code = 400, message = "Bad request"),
+            @ApiResponse(code = 500, message = "Internal server error") })
+    @GetMapping(value = "/listar", produces = "application/json")
 	public ResponseEntity<List<CargoDTO>> listando() {
 		List<Cargo> lista = cargoService.listar();
 		List<CargoDTO> listaDTO = lista.stream().map(obj -> new CargoDTO(obj)).collect(Collectors.toList());
@@ -44,7 +65,14 @@ public class CargoResource {
 	}
 	
 	// Insert
-	@RequestMapping(method = RequestMethod.POST)
+	@ApiOperation(value = "Save New Cargo")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "ok"),
+            @ApiResponse(code = 201, message = "Created"),
+            @ApiResponse(code = 401, message = "Access denied"),
+            @ApiResponse(code = 400, message = "Bad request"),
+            @ApiResponse(code = 500, message = "Internal server error") })
+	@PostMapping(produces = "application/json")
 	public ResponseEntity<Void> inserir(@Valid @RequestBody CargoDTO objDto) {
 		Cargo obj = cargoService.fromDTO(objDto);
 		obj = cargoService.inserindo(obj);
@@ -53,7 +81,14 @@ public class CargoResource {
 	}
 		
 	// Update
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@ApiOperation(value = "Update Cargo")
+	@ApiResponses(value = {
+            @ApiResponse(code = 200, message = "ok"),
+            @ApiResponse(code = 201, message = "Created"),
+            @ApiResponse(code = 401, message = "Access denied"),
+            @ApiResponse(code = 400, message = "Bad request"),
+            @ApiResponse(code = 500, message = "Internal server error") })
+	@PutMapping(value="/{id}", produces = "application/json")
 	public ResponseEntity<Void> alterar(@RequestBody Cargo obj, @PathVariable Integer id) {
 		obj.setId(id);
 		obj = cargoService.alterando(obj);
@@ -61,14 +96,28 @@ public class CargoResource {
 	}
 
 	// Delete
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@ApiOperation(value = "Delete Cargo")
+	@ApiResponses(value = {
+            @ApiResponse(code = 200, message = "ok"),
+            @ApiResponse(code = 201, message = "Created"),
+            @ApiResponse(code = 401, message = "Access denied"),
+            @ApiResponse(code = 400, message = "Bad request"),
+            @ApiResponse(code = 500, message = "Internal server error") })
+	@DeleteMapping(value = "/{id}", produces = "application/json")
 	public ResponseEntity<Void> deletar(@PathVariable Integer id) {
 		cargoService.deletando(id);
 		return ResponseEntity.noContent().build();
 	}
 
 	// Page
-	@RequestMapping(value = "/page", method = RequestMethod.GET)
+	@ApiOperation(value = "Paging of Cargo")
+	@ApiResponses(value = {
+            @ApiResponse(code = 200, message = "ok"),
+            @ApiResponse(code = 201, message = "Created"),
+            @ApiResponse(code = 401, message = "Access denied"),
+            @ApiResponse(code = 400, message = "Bad request"),
+            @ApiResponse(code = 500, message = "Internal server error") })
+	@GetMapping(value="/page",produces = "application/json")
 	public ResponseEntity<Page<CargoDTO>> paginacao(@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
 			@RequestParam(value = "orderBy", defaultValue = "nomeCargo") String orderBy,
@@ -78,10 +127,4 @@ public class CargoResource {
 		return ResponseEntity.ok().body(listaDTO);
 	}
 	
-
 }
-
-
-//private SessionFactory sessionFactory;
-//Statistics estatisticas = sessionFactory.getStatistics();
-//System.out.println(estatisticas.getQueryExecutionCount());

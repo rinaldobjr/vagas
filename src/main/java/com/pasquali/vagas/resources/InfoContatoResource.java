@@ -13,7 +13,7 @@ import com.pasquali.vagas.domain.InfoContato;
 import com.pasquali.vagas.services.InfoContatoService;
 
 @RestController
-@RequestMapping(value="/infocontato")
+@RequestMapping(value="/api/infocontato")
 public class InfoContatoResource {
 	
 	@Autowired
@@ -33,5 +33,9 @@ public class InfoContatoResource {
 		return ResponseEntity.ok().body(lista);
 	}
 	
-
+	//Insert
+	//Update
+	//Delete
+	//Page
+	
 }

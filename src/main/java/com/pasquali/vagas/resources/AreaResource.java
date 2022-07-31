@@ -85,6 +85,13 @@ public class AreaResource {
 	}
 	
 	// Update
+	@ApiOperation(value = "Update Area")
+	@ApiResponses(value = {
+            @ApiResponse(code = 200, message = "ok"),
+            @ApiResponse(code = 201, message = "Created"),
+            @ApiResponse(code = 401, message = "Access denied"),
+            @ApiResponse(code = 400, message = "Bad request"),
+            @ApiResponse(code = 500, message = "Internal server error") })
 	@PutMapping(value="/{id}", produces = "application/json")
 	//@RequestMapping(value="/{id}", method = RequestMethod.PUT,
 	//		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE
@@ -96,7 +103,14 @@ public class AreaResource {
 	}
 	
 	// Delete
-	@DeleteMapping(produces = "application/json")
+	@ApiOperation(value = "Delete Area")
+	@ApiResponses(value = {
+            @ApiResponse(code = 200, message = "ok"),
+            @ApiResponse(code = 201, message = "Created"),
+            @ApiResponse(code = 401, message = "Access denied"),
+            @ApiResponse(code = 400, message = "Bad request"),
+            @ApiResponse(code = 500, message = "Internal server error") })
+	@DeleteMapping(value = "/{id}", produces = "application/json")
 	//@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deletar(@PathVariable Integer id) {
 		areaService.deletando(id);
@@ -104,6 +118,13 @@ public class AreaResource {
 	}
 	
 	// Page
+	@ApiOperation(value = "Paging of Area")
+	@ApiResponses(value = {
+            @ApiResponse(code = 200, message = "ok"),
+            @ApiResponse(code = 201, message = "Created"),
+            @ApiResponse(code = 401, message = "Access denied"),
+            @ApiResponse(code = 400, message = "Bad request"),
+            @ApiResponse(code = 500, message = "Internal server error") })
 	@GetMapping(value="/page",produces = "application/json")
 	//@RequestMapping(value="/page", method = RequestMethod.GET)
 	public ResponseEntity<Page<AreaDTO>> paginacao(
@@ -117,3 +138,7 @@ public class AreaResource {
 	}
 
 }
+
+//private SessionFactory sessionFactory;
+//Statistics estatisticas = sessionFactory.getStatistics();
+//System.out.println(estatisticas.getQueryExecutionCount());

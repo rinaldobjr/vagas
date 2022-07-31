@@ -1,14 +1,11 @@
 TODO
 
 PENDENTE
-1. Estado (Inserir, Alterar, Deletar e Paginacao)
+1. Usuario (Inserir, Alterar, Deletar e Paginacao)
 2. InfoContato (Inserir, Alterar, Deletar e Paginacao)
-3. Estado (Inserir, Alterar, Deletar e Paginacao)
-4. Empresa (Inserir, Alterar)
-5. Vagas (Inserir, Alterar, Deletar e Paginacao)
-6. Usuario (Inserir, Alterar, Deletar e Paginacao)
-7. LogAcao (Paginacao com filtro, Find com Filtro)
-8. 
+3. Vaga (Inserir, Alterar e Paginacao)
+4. LogAcao (Paginacao com filtro, Find com Filtro)
+
 
 VERIFICAR
 1. Verificar Cidade endpoint Inserir e Alterar

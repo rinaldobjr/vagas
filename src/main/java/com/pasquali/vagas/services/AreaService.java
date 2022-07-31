@@ -37,10 +37,10 @@ public class AreaService {
 	
 	public List<Area> listar() {
 		LogRegistro log = new LogRegistro();
-		Usuario user = new Usuario();
+		//Usuario user = new Usuario();
 
-		user.setId(2);
-		log.registrar(TipoAcao.VISUAL, "Area", "Listando Dados", "Listando todos os registros da tabela",user);
+		//user.setId(2);
+		//log.registrar(TipoAcao.VISUAL, "Area", "Listando Dados", "Listando todos os registros da tabela",user);
 		//LogAcao log = new LogAcao(null,TipoAcao.VISUAL,"Area",DataHora.dataHoje(),"H","Listando Registro ","Listando os registros de ",2);
 		//logAcaoService.inserindo(log);
 		return areaRepository.findAll();

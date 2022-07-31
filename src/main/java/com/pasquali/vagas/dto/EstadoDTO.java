@@ -5,35 +5,35 @@ import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.pasquali.vagas.domain.Cidade;
+import com.pasquali.vagas.domain.Estado;
 import com.pasquali.vagas.domain.enums.Registro;
 
-public class CidadeDTO implements Serializable {
+public class EstadoDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	private Integer id;
 	
 	@NotNull(message = "Preenchimento obrigatorio")
-	@Size(min = 5, max = 80, message = "O tamanho deve ser entre 5 a 80 caracteres")
+	@Size(min = 5, max = 40, message = "O tamanho deve ser entre 5 a 40 caracteres")
 	private String nome;
 	
-	@NotNull
-	private Integer estado;
+	@NotNull(message = "Preenchimento obrigatorio")
+	private String sigla;
 	
 	@NotNull
 	private Registro ativo;
 	
-	public CidadeDTO() {
-	}
 	
-	public CidadeDTO(Cidade obj) {
+	public EstadoDTO() { }
+	
+	public EstadoDTO(Estado obj) {
 		id = obj.getId();
 		nome = obj.getNome();
+		sigla = obj.getSigla();
 		ativo = obj.getAtivo();
-		estado = obj.getEstado().getId();
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -50,6 +50,14 @@ public class CidadeDTO implements Serializable {
 		this.nome = nome;
 	}
 
+	public String getSigla() {
+		return sigla;
+	}
+
+	public void setSigla(String sigla) {
+		this.sigla = sigla;
+	}
+
 	public Registro getAtivo() {
 		return ativo;
 	}
@@ -61,15 +69,5 @@ public class CidadeDTO implements Serializable {
 			this.ativo = Registro.INATIVO;
 		}
 	}
-
-	public Integer getEstado() {
-		return estado;
-	}
-
-	public void setEstado(Integer estado) {
-		this.estado = estado;
-	}
-	
-	
 	
 }

@@ -187,8 +187,8 @@ public class VagasApplication implements CommandLineRunner{
 		Vaga v1 = new Vaga(null, "Resumo", "Obs", sdf.parse("2022/06/10 10:20"), null, null, 2, null, null, car1, n3, l1, ct1, inf1, a1, vs1, e1);
 		vagaRepository.saveAll(Arrays.asList(v1));
 		
-		Usuario u1 = new Usuario(null, "admin", "admin", TipoUsuario.ADMIN, "Rinaldo Belisario Junior", "RinaldoBJr", null, "11 96908-3249", "rinaldobjr@gmail.com", 1, Permissao.SIM, Sexo.MASCULINO, Registro.ATIVO,est1,null,null);
-		Usuario u2 = new Usuario(null, "rinaldobjr", "admin", TipoUsuario.EDITOR,"Rinaldo Belisario Junior", "RinaldoBJr", null, "11 96908-3249", "rinaldobjr@gmail.com", 1, Permissao.SIM, Sexo.MASCULINO, Registro.ATIVO, est1,null,null);
+		Usuario u1 = new Usuario(null, "admin", "admin", "Rinaldo Belisario Junior", "RinaldoBJr", TipoUsuario.ADMIN, null, "11 96908-3249", "rinaldobjr@gmail.com", Permissao.SIM, Permissao.SIM, Sexo.MASCULINO, Registro.ATIVO,est1);
+		Usuario u2 = new Usuario(null, "rinaldobjr", "admin", "Rinaldo Belisario Junior", "RinaldoBJr", TipoUsuario.EDITOR, null, "11 96908-3249", "rinaldobjr@gmail.com", Permissao.SIM, Permissao.SIM, Sexo.MASCULINO, Registro.ATIVO, est1);
 		usuarioRepository.saveAll(Arrays.asList(u1,u2));
 		Date hoje = DataHora.dataHoje();
 		LogAcao la1 = new LogAcao(null,TipoAcao.UPDATE,"Usuario", hoje, "15:34","Alteracao de Status","Obs TEXT",u2);

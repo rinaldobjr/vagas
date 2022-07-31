@@ -64,8 +64,6 @@ public class Usuario implements Serializable {
 
 	@Column(name = "ATIVO", length = 1)
 	private Integer ativo;
-
-	public Usuario() {}
 	
 	// Relation
 	//@JsonManagedReference
@@ -81,28 +79,26 @@ public class Usuario implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "estado_id")
 	private Estado estado;
-
-
-	public Usuario(Integer id, String login, String senha, TipoUsuario tipoUsuario, String nomeCompleto,
-			String nomeApelido, String telefone, String celular, String email, Integer enviaEmail, Permissao whatsapp,
-			Sexo sexo, Registro ativo, Estado estado,List<LogAcao> logsAcao, List<LogEnvioEmail> logsEnvioEmail) {
+	
+	public Usuario(Integer id, String login, String senha, String nomeCompleto,String nomeApelido,
+			TipoUsuario tipoUsuario, String telefone, String celular, String email, 
+			Permissao enviaEmail, Permissao whatsapp,
+			Sexo sexo, Registro ativo, Estado estado) {
 		super();
 		this.id = id;
 		this.login = login;
 		this.senha = senha;
-		this.tipoUsuario = tipoUsuario.getCod();
 		this.nomeCompleto = nomeCompleto;
 		this.nomeApelido = nomeApelido;
+		this.tipoUsuario = tipoUsuario.getCod();
 		this.telefone = telefone;
 		this.celular = celular;
 		this.email = email;
-		this.enviaEmail = enviaEmail;
+		this.enviaEmail = enviaEmail.getCod();
 		this.whatsapp = whatsapp.getCod();
 		this.sexo = sexo.getCod();
 		this.ativo = ativo.getCod();
 		this.estado = estado;
-		this.logsAcao = logsAcao;
-		this.logsEnvioEmail = logsEnvioEmail;
 	}
 
 	@Override
@@ -185,12 +181,12 @@ public class Usuario implements Serializable {
 		this.email = email;
 	}
 
-	public Integer getEnviaEmail() {
-		return enviaEmail;
+	public Permissao getEnviaEmail() {
+		return Permissao.toEnum(enviaEmail);
 	}
 
-	public void setEnviaEmail(Integer enviaEmail) {
-		this.enviaEmail = enviaEmail;
+	public void setEnviaEmail(Permissao enviaEmail) {
+		this.enviaEmail = enviaEmail.getCod();
 	}
 
 	public Permissao getWhatsapp() {
@@ -217,21 +213,21 @@ public class Usuario implements Serializable {
 		this.ativo = ativo.getCod();
 	}
 
-	public List<LogAcao> getLogsAcao() {
-		return logsAcao;
-	}
-
-	public void setLogsAcao(List<LogAcao> logsAcao) {
-		this.logsAcao = logsAcao;
-	}
-
-	public List<LogEnvioEmail> getLogsEnvioEmail() {
-		return logsEnvioEmail;
-	}
-
-	public void setLogsEnvioEmail(List<LogEnvioEmail> logsEnvioEmail) {
-		this.logsEnvioEmail = logsEnvioEmail;
-	}
+//	public List<LogAcao> getLogsAcao() {
+//		return logsAcao;
+//	}
+//
+//	public void setLogsAcao(List<LogAcao> logsAcao) {
+//		this.logsAcao = logsAcao;
+//	}
+//
+//	public List<LogEnvioEmail> getLogsEnvioEmail() {
+//		return logsEnvioEmail;
+//	}
+//
+//	public void setLogsEnvioEmail(List<LogEnvioEmail> logsEnvioEmail) {
+//		this.logsEnvioEmail = logsEnvioEmail;
+//	}
 
 	public Estado getEstado() {
 		return estado;
